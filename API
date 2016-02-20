@@ -1,0 +1,21 @@
+root:  https://together-nyu.herokuapp.com/api
+
+
+/activity
+
+post: create an activity 
+{
+    userid: String,
+    type: ("Study", "Play", "Date", "Message"),
+    coordinates: [ <longitude, latitude> ],
+    title: String,
+    content: String
+}
+
+
+/activity/:geoInfo
+
+get: get all the activities in the area
+
+:geoInfo = [ <longitude, latitude> ]
+

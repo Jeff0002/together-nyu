@@ -6,8 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+//var users = require('./routes/users');
+var api = require('./routes/api');
 
+// MongoDB
+var mongoose = require('mongoose');
+var url = 'mongodb://tebyt:togethernyu@ds013738.mongolab.com:13738/heroku_t1qnbv72';
+mongoose.connect(url, function(err) {
+    if(err) {
+        console.log('connection error', err);
+    } else {
+        console.log('connection successful');
+    }
+});
 var app = express();
 
 // view engine setup
@@ -23,7 +34,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+//app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
