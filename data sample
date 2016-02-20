@@ -1,0 +1,31 @@
+{
+    userid: String,
+    type: String ("Study", "Play", "Date", "Message"),
+    loc: [Number] // [longitude, latitude],
+    subject: String,
+    description: String,
+    startTime: Date, // 2016-02-20T22:17:44.131Z
+    endTime: Date  
+}
+
+{
+    “userid” : “00000000”,
+    “type” : “Study”,
+    “loc” : [“-73.98575570000003”, “40.6945689”],
+    “subject” : “Study DB in lib”
+    “description” : “Is there anyone who want to study with me for database course in the 8:00 am?”,
+    “startTime” : “2016-02-21T07:55:00.000Z”,
+    “endTime” : “2016-02-21T11:55:00.000Z”
+}
+
+{
+    “userid” : “00000001”,
+    “type” : “Play”,
+    “loc” : [“-73.98705189999998”, “40.69684”],
+    “subject” : “Basketball game near Tandon”
+    “description” : “Anyone want to come to McLaughlin Park to play basketball?”,
+    “startTime” : “2016-02-20T11:55:00.000Z”,
+    “endTime” : “2016-02-20T03:55:00.000Z”
+}
+
+
