@@ -6,10 +6,12 @@ root:  https://together-nyu.herokuapp.com/api
 post: create an activity 
 {
     userid: String,
-    type: ("Study", "Play", "Date", "Message"),
-    coordinates: [ <longitude, latitude> ],
-    title: String,
-    content: String
+    type: String ("Study", "Play", "Date", "Message"),
+    loc: [Number] // [longitude, latitude],
+    subject: String,
+    description: String,
+    startTime: Date, // 2016-02-20T22:17:44.131Z
+    endTime: Date  
 }
 
 
