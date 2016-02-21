@@ -53,8 +53,9 @@ router.get('/user/:username/:password', function (req, res, next) {
 })
 
 router.get('/activity', function (req, res) {
-    var locParam = JSON.parse(req.query.data);
-    console.log(locParam[0]);
+//    console.log(req.query.data);
+//    var locParam = JSON.parse(req.query.data);
+//    console.log(locParam);
 
     
     mongodb.MongoClient.connect('mongodb://tebyt:togethernyu@ds013738.mongolab.com:13738/heroku_t1qnbv72', function (err, db) {
@@ -63,11 +64,12 @@ router.get('/activity', function (req, res) {
             .find({
                 loc: {
                     $geoWithin: {
-                        $box: locParam
+                        $box: [[Number(req.query.ne_lg), Number(req.query.ne_la)], [Number(req.query.sw_lg), Number(req.query.sw_la)]]
                     }
                 }
             })
             .toArray(function (err, results) {
+                if (err) res.send(err);
 //                console.log(results);
 //                if (!results)
 //                    results = [];
