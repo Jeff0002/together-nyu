@@ -52,8 +52,8 @@ router.get('/user/:username/:password', function (req, res, next) {
 
 })
 
-router.get('/activity/:loc', function (req, res) {
-    var locParam = JSON.parse(req.params.loc).data;
+router.get('/activity', function (req, res) {
+    var locParam = JSON.parse(req.query.data);
     console.log(locParam);
 
     
