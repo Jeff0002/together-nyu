@@ -54,11 +54,11 @@ router.get('/user/:username/:password', function (req, res, next) {
 
 router.get('/activity', function (req, res) {
     var locParam = JSON.parse(req.query.data);
-    console.log(locParam);
+    console.log(locParam[0]);
 
     
     mongodb.MongoClient.connect('mongodb://tebyt:togethernyu@ds013738.mongolab.com:13738/heroku_t1qnbv72', function (err, db) {
-        if (err) throw err;
+        if (err) res.send(err);
         db.collection('activities')
             .find({
                 loc: {
