@@ -26,9 +26,15 @@ var userSchema = new mongoose.Schema({
 var user = mongoose.model('user', userSchema);
 
 router.get('/user', function (req, res, next) {
-    user.find(function (err, data) {
-        if (err) return next(err);
-        res.json(data);
+        mongodb.MongoClient.connect('mongodb://bizbuzz:123456@ds025399.mlab.com:25399/bizbuzz', function (err, db) {
+        if (err) res.send(err);
+        db.collection('user').find({
+                "name": "Jeff"
+            }).toArray(function (err, results) {
+                if (err) res.send(err);
+                res.json(results);
+                db.close();
+            });
     });
 });
 
