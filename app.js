@@ -11,7 +11,8 @@ var api = require('./routes/api');
 
 // MongoDB
 var mongoose = require('mongoose');
-var url = 'mongodb://tebyt:togethernyu@ds013738.mongolab.com:13738/heroku_t1qnbv72';
+var url = 'mongodb://bizbuzz:123456@ds025399.mlab.com:25399/bizbuzz';
+//var url = 'mongodb://tebyt:togethernyu@ds013738.mongolab.com:13738/heroku_t1qnbv72';
 mongoose.connect(url, function(err) {
     if(err) {
         console.log('connection error', err);
