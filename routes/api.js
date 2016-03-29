@@ -3,24 +3,16 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
 
-
-var activitySchema = new mongoose.Schema({
-    userid: String,
-    type: String,
-    loc: {
-        type: [Number],
-        index: '2dsphere'
-    },
-    subject: String,
-    description: String,
-    startTime: Date,
-    endTime: Date
-});
-
-var activity = mongoose.model('activity', activitySchema);
-
 var userSchema = new mongoose.Schema({
-    name: String
+    name: String,
+    Age: Number,
+    LoyaltyPoints: Number,
+    FavoriteBarber: String,
+    Appointment: [
+        {
+            BarberName: String,
+            Time: Date
+        }]
 })
 
 var user = mongoose.model('user', userSchema);
@@ -28,9 +20,7 @@ var user = mongoose.model('user', userSchema);
 router.get('/user', function (req, res, next) {
         mongodb.MongoClient.connect('mongodb://bizbuzz:123456@ds025399.mlab.com:25399/bizbuzz', function (err, db) {
         if (err) res.send(err);
-        db.collection('user').find({
-                "name": "Jeff"
-            }).toArray(function (err, results) {
+        db.collection('user').find(function (err, results) {
                 if (err) res.send(err);
                 res.json(results);
                 db.close();
