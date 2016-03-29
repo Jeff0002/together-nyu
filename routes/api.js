@@ -20,12 +20,17 @@ var activitySchema = new mongoose.Schema({
 var activity = mongoose.model('activity', activitySchema);
 
 var userSchema = new mongoose.Schema({
-    username: String,
-    password: String
+    name: String
 })
 
 var user = mongoose.model('user', userSchema);
 
+router.get('/user', function (req, res, next) {
+    user.find(function (err, data) {
+        if (err) return next(err);
+        res.json(data);
+    });
+});
 
 router.post('/user', function (req, res, next) {
     user.create(req.body, function (err, data) {
@@ -33,6 +38,12 @@ router.post('/user', function (req, res, next) {
         res.json(data);
     })
 });
+
+router.get('/hello', function (req, res) {
+    res.json({
+        "test": "hello"
+    });
+})
 
 router.get('/user/:username/:password', function (req, res, next) {
     user.find({
@@ -108,11 +119,7 @@ router.post('/activity', function (req, res, next) {
 
 
 
-router.get('/hello', function (req, res) {
-    res.json({
-        "test": "hello"
-    });
-})
+
 
 router.get('/activity-all', function (req, res, next) {
     activity.find(function (err, data) {
