@@ -38,6 +38,13 @@ router.get('/user', function (req, res, next) {
     });
 });
 
+router.get('/user-all', function (req, res, next) {
+    user.find(function (err, data) {
+        if (err) return next(err);
+        res.json(data);
+    });
+});
+
 router.post('/user', function (req, res, next) {
     user.create(req.body, function (err, data) {
         if (err) return next(err);
