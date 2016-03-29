@@ -20,7 +20,7 @@ var user = mongoose.model('user', userSchema);
 router.get('/user', function (req, res, next) {
         mongodb.MongoClient.connect('mongodb://bizbuzz:123456@ds025399.mlab.com:25399/bizbuzz', function (err, db) {
         if (err) res.send(err);
-        db.collection('user').find(function (err, results) {
+        db.collection('user').find().toArray(function (err, results) {
                 if (err) res.send(err);
                 res.json(results);
                 db.close();
